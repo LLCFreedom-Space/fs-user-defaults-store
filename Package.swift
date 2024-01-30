@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "FSUserDefaultsStore",
+    name: "fs-user-defaults-store",
     platforms: [
         .iOS(.v16),
         .macOS(.v13)
