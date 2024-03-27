@@ -32,7 +32,7 @@ jobs:
           $(xcrun --find docc) process-archive \
             transform-for-static-hosting /tmp/docbuild/Build/Products/Debug-iphoneos/UserDefaultsStore.doccarchive \
             --output-path docs \
-            --hosting-base-path userdefaultsstore;
+            --hosting-base-path fs-user-defaults-store;
           echo "<script>window.location.href += \"/documentation/userdefaultsstore\"</script>" > docs/index.html;
 
       - name: Upload artifact 📜
