@@ -27,24 +27,29 @@ import XCTest
 @testable import UserDefaultsStore
 
 final class UserDefaultsStoreTests: XCTestCase {
+    /// A private variable to store the `UserDefaultsStore` instance.
     private var userDefaults: UserDefaultsStore?
     
+    /// Sets up the test environment before each test.
     override func setUp() {
         super.setUp()
         userDefaults?.reset()
     }
     
+    /// Cleans up the test environment after each test.
     override func tearDown() {
         super.tearDown()
         userDefaults?.reset()
     }
     
+    /// Tests creating a `UserDefaultsStore` instance with a specified suite name.
     func testCreateStore() {
         let suiteName = UUID().uuidString
         let store = createStore(suiteName: suiteName)
         XCTAssertEqual(store.suiteName, suiteName)
     }
     
+    /// Tests setting string values for different keys and verifies retrieval.
     func testSet() {
         let store = createStore()
         let value = "foo"
@@ -62,6 +67,7 @@ final class UserDefaultsStoreTests: XCTestCase {
         XCTAssertEqual(store.get(forKey: key), value2)
     }
     
+    /// Tests saving and retrieving `Codable` objects using JSON encoding/decoding.
     func testSetObject() throws {
         let store = createStore()
         let key = "KEY_1"
@@ -76,6 +82,7 @@ final class UserDefaultsStoreTests: XCTestCase {
         XCTAssertEqual(storeValue2, MockObject.bar)
     }
     
+    /// Tests storing and retrieving string arrays.
     func testSetArray() throws {
         let store = createStore()
         let value = ["foo", "bar"]
@@ -90,6 +97,7 @@ final class UserDefaultsStoreTests: XCTestCase {
         XCTAssertTrue(storageValue.isEmpty)
     }
     
+    /// Tests removing a specific key-value pair.
     func testRemove() throws {
         let store = createStore()
         let value = "foo"
@@ -104,6 +112,7 @@ final class UserDefaultsStoreTests: XCTestCase {
         XCTAssertNil(result)
     }
     
+    /// Tests resetting the entire `UserDefaults` store.
     func testReset() throws {
         let store = createStore()
         let value = "foo"
@@ -126,6 +135,7 @@ final class UserDefaultsStoreTests: XCTestCase {
         XCTAssertNil(valueAfterReset)
     }
     
+    /// Tests selectively cleaning up UserDefaults while preserving values for specified keys.
     func testCleanExcept() {
         let store = createStore()
         let value = "foo"
@@ -149,6 +159,7 @@ final class UserDefaultsStoreTests: XCTestCase {
         XCTAssertEqual(value2AfterReset, value2)
     }
     
+    /// Tests saving and retrieving `Codable` objects using a dedicated method.
     func testSave() throws {
         let store = createStore()
         let key = "KEY_1"
@@ -162,7 +173,12 @@ final class UserDefaultsStoreTests: XCTestCase {
     }
 }
 
+/// Private helper function to create a `UserDefaultsStore` instance with a specified suite name.
 private extension UserDefaultsStoreTests {
+    /// Creates a `UserDefaultsStore` instance with a specified suite name.
+    ///
+    /// - Parameter suiteName: The name of the suite to use for the UserDefaults store. Defaults to "user".
+    /// - Returns: A new `UserDefaultsStore` instance.
     func createStore(
         suiteName: String = "user"
     ) -> UserDefaultsStore {

@@ -25,18 +25,30 @@
 import Foundation
 
 struct MockObject: Codable {
+    /// A unique identifier for the mock object.
     let id: Int
+    /// The name of the mock object.
     var name: String
 }
 
 extension MockObject: Equatable {
+    /// Compares two `MockObject` instances for equality.
+    ///
+    /// - Parameters:
+    ///   - lhs: The left-hand side object.
+    ///   - rhs: The right-hand side object.
+    ///
+    /// - Returns: `true` if the objects are equal, `false` otherwise.
     static func == (lhs: Self, rhs: Self) -> Bool {
         return lhs.id == rhs.id
     }
 }
 
 extension MockObject {
+    /// A predefined `MockObject` instance with `id: 1` and `name: "Foo"`.
     static let foo = Self(id: 1, name: "Foo")
+    /// A predefined `MockObject` instance with `id: 2` and `name: "Bar"`.
     static let bar = Self(id: 2, name: "Bar")
+    /// A predefined `MockObject` instance with `id: 3` and `name: "Baz"`.
     static let baz = Self(id: 3, name: "Baz")
 }
