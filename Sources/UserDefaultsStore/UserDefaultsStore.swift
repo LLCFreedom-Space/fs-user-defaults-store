@@ -109,7 +109,7 @@ public struct UserDefaultsStore: UserDefaultsStoreProtocol {
     
     /// Returns all keys which are present in the store.
     ///
-    /// - Returns: The array of  `String` representing all keys from the store.
+    /// - Returns: The array of `String` representing all keys from the store.
     public func keys() -> [String] {
         let keys = userDefaults.dictionaryRepresentation().keys
         return [String](keys)
