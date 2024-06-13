@@ -97,6 +97,26 @@ final class UserDefaultsStoreTests: XCTestCase {
         XCTAssertTrue(storageValue.isEmpty)
     }
     
+    /// Tests retrieving array containing all keys of the store
+    func testKeys() throws {
+        let store = createStore()
+
+        let value1 = "foo"
+        let key1 = "KEY_1"
+        store.set(value1, forKey: key1)
+
+        let value2 = "bar"
+        let key2 = "KEY_2"
+        store.set(value2, forKey: key2)
+
+        let keys = store.keys()
+        XCTAssertTrue(keys.contains(key1))
+        XCTAssertTrue(keys.contains(key2))
+
+        let key3 = "KEY_3"
+        XCTAssertFalse(keys.contains(key3))
+    }
+
     /// Tests removing a specific key-value pair.
     func testRemove() throws {
         let store = createStore()
