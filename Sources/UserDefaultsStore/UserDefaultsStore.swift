@@ -106,6 +106,14 @@ public struct UserDefaultsStore: UserDefaultsStoreProtocol {
     }
     
     // MARK: - Data Management
+    
+    /// Returns all keys which are present in the store.
+    ///
+    /// - Returns: The array of `String` representing all keys from the store.
+    public func keys() -> [String] {
+        let keys = userDefaults.dictionaryRepresentation().keys
+        return [String](keys)
+    }
 
     /// Removes the value associated with a given key.
     ///

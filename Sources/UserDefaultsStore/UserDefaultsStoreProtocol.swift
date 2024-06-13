@@ -66,6 +66,11 @@ public protocol UserDefaultsStoreProtocol {
     /// - Returns: The decoded object, or nil if decoding fails or no object is found.
     func getObject<T: Codable>(forKey defaultName: String, castTo type: T.Type) -> T?
     
+    /// Returns all keys which are present in the store.
+    ///
+    /// - Returns: The array of `String` representing all keys from the store.
+    func keys() -> [String]
+    
     /// Resets the UserDefaults store to its initial state, removing all stored values.
     func reset()
     
